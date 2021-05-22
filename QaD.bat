@@ -31,7 +31,7 @@ CLS
 echo.
 echo  ### Console
 set searchedin=console
-REM ### Update the folder location for your server logs - wrap in double quotes if there are spaces!!
+REM ### Update the folder location for your server logs
 set workingfolder=C:\Servers\Dayz-New\servers\0\logs
 echo.
 set /p stringonea= Search for: 
@@ -45,7 +45,7 @@ echo.
 echo  ### CommunityTools
 echo.
 set searchedin=community
-REM ### Update the folder location for your server logs - wrap in double quotes if there are spaces!!
+REM ### Update the folder location for your server logs
 set workingfolder=C:\Servers\Dayz-New\servers\0\profiles\CommunityOnlineTools\Logs
 echo  # Paste SteamID for your desired player below
 echo.
@@ -60,7 +60,7 @@ echo.
 echo  ### CodeLocks
 echo.
 set searchedin=codelocks
-REM ### Update the folder location for your server logs - wrap in double quotes if there are spaces!!
+REM ### Update the folder location for your server logs
 set workingfolder=C:\Servers\Dayz-New\servers\0\profiles\CodeLock\Logs\
 echo  # Search by playername, action ('raiding', 'accessed', 'attached'), or SteamID
 echo.
@@ -74,7 +74,7 @@ CLS
 echo.
 echo  ### Player Damage
 set searchedin=player-damage
-REM ### Update the folder location for your server logs - wrap in double quotes if there are spaces!!
+REM ### Update the folder location for your server logs
 set workingfolder=C:\Servers\Dayz-New\servers\0\logs
 echo  # Possible search strings:
 echo.
