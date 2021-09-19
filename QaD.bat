@@ -1,6 +1,6 @@
 @echo off
 :TOPTOP
-TITLE Quick ^& Durty LogSifter
+TITLE Quick ^& Durty Log Sifter
 echo.
 echo  ### Select a folder to search through
 echo.
