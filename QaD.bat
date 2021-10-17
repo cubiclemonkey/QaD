@@ -84,7 +84,7 @@ echo  3. unconscious - To find where/when a player is unconscious
 echo.
 set /p stringonea= Search for: 
 echo.
-Powershell "Get-ChildItem -Path '%workingfolder%\*.ADM' -recurse | Select-String -Pattern "%stringonea%" > '%reportsfolder%\%searchedin%-%stringonea%.txt'"
+Powershell "Get-ChildItem -Path '%workingfolder%\*.ADM' -recurse | Select-String -Pattern '%stringonea%' > '%reportsfolder%\%searchedin%-%stringonea%.txt'"
 echo Filtering by "%stringonea%" . . .
 GOTO ENDING
 :ENDING
