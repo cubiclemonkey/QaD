@@ -13,6 +13,7 @@ The best place to keep this file is on your Desktop. Once the folder locations a
 
 <code>
 REM ### DayZ Server Folder
+  
 set consoleloc=NOTSET
 </code>
 
