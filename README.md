@@ -11,8 +11,10 @@ When you run this batch file it will look for a 'Reports' folder on your desktop
 
 The best place to keep this file is on your Desktop. Once the folder locations are set it will know where to go to find what you're looking for.
 
+<code>
 REM ### DayZ Server Folder
 set consoleloc=NOTSET
+</code>
 
 Paste the top level folder of your DayZ server after the '=' (including drive letter).
 
