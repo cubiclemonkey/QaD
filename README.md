@@ -21,4 +21,4 @@ Paste the top level folder of your DayZ server after the '=' (including drive le
 
 Look at the example image if you're not sure what to do:
 
-https://github.com/cubiclemonkey/QaD/blob/main/QaD-example.png?raw=true
+<img src="https://github.com/cubiclemonkey/QaD/blob/main/QaD-example.png?raw=true">
