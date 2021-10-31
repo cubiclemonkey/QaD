@@ -2,13 +2,10 @@
 :NOTTOP
 REM #################### - VARIABLE SETTINGS - ####################
 REM ### DayZ Server Folder
-set consoleloc=NOTSET
-REM ### Community Online Tools Folder
-set cotloc=NOTSET
-
-IF /I %consoleloc%==NOTSET GOTO EDITPROMPT
-IF /I %cotloc%==NOTSET GOTO EDITPROMPT
+set dayzrootloc=C:\DayZ\server
+IF /I %dayzrootloc%==NOTSET GOTO EDITPROMPT
 :TOPTOP
+CLS
 TITLE QaD DayZ Log Sifter
 echo.
 echo  ### Select what logs to search through:
@@ -21,14 +18,17 @@ echo  C. Game Chat Search
 echo.
 echo  D. DayZ Player Damage
 echo.
-REM Update the next line with the mod name
-echo  E. UPDATE MOD NAME
+echo  E. Car Cover
+echo.
+echo  F. Advanced Banking
 echo.
 echo  X. Close this window
 set reportsfolder=%userprofile%\Desktop\Reports\
 IF NOT EXIST "%userprofile%\Desktop\Reports\" mkdir "%userprofile%\Desktop\Reports\"
 REM set ticketsfolder=%userprofile%\Desktop\Reports\Tickets\
 REM IF NOT EXIST "%userprofile%\Desktop\Reports\Tickets\" mkdir "%userprofile%\Desktop\Reports\Tickets\"
+REM set ticketsfolder=%userprofile%\Desktop\Reports\Tickets\
+IF NOT EXIST "%Temp%\QaD\" mkdir "%Temp%\QaD\"
 echo.
 set /p whatarewedoingboss= Select an option: 
 echo.
@@ -36,7 +36,8 @@ IF /I %whatarewedoingboss%==A GOTO CONSOLE
 IF /I %whatarewedoingboss%==B GOTO COT
 IF /I %whatarewedoingboss%==C GOTO CHATSER
 IF /I %whatarewedoingboss%==D GOTO PLDMG
-IF /I %whatarewedoingboss%==E GOTO CUST1
+IF /I %whatarewedoingboss%==E GOTO CCOVER
+IF /I %whatarewedoingboss%==F GOTO BTRANS
 IF /I %whatarewedoingboss%==X GOTO EXITTH
 echo.
 echo  A, B, C, D, or E - those are your options. :(
@@ -44,18 +45,32 @@ echo.
 PAUSE
 CLS
 GOTO TOPTOP
-:CUST1
+:CCOVER
 CLS
 echo.
-REM Update your chosen mod name here to reflect in the menu
-echo  ## UPDATE MOD NAME
-set searchedin=UPDATE MODE NAME
-REM ### Update the folder location for your server logs
-set customer-mod-folder=UPDATE MOD FOLDER
+echo  ## Car Cover
+set searchedin=carcover
+set customer-mod-folder=%dayzrootloc%\profiles\CarCover
+echo.
+echo  # Paste a SteamID, player name, vehicle, action (covered/uncovered) or date [DD.MM.YYYY]
 echo.
 set /p customer-mod-ser= Search for: 
 echo.
-Powershell "Get-ChildItem -Path '%customer-mod-folder%\*.log' -recurse | Select-String -Pattern '%customer-mod-ser%' > '%reportsfolder%\%searchedin%-%customer-mod-ser%.txt'"
+Powershell "Get-ChildItem -Path '%customer-mod-folder%\*.log' -recurse | Select-String -Pattern '%customer-mod-ser%' | Format-Table Line -HideTableHeaders > '%reportsfolder%\%searchedin%-%customer-mod-ser%.txt'"
+echo Filtering by "%customer-mod-ser%" . . .
+GOTO ENDING
+:BTRANS
+CLS
+echo.
+echo  ## Advanced Banking
+set searchedin=carcover
+set customer-mod-folder=%dayzrootloc%\profiles\AdvancedBanking
+echo.
+echo  # Paste a SteamID, player name or action
+echo.
+set /p customer-mod-ser= Search for: 
+echo.
+Powershell "Get-ChildItem -Path '%customer-mod-folder%\*.log' -recurse | Select-String -Pattern '%customer-mod-ser%' | Format-Table Line -HideTableHeaders > '%reportsfolder%\%searchedin%-%customer-mod-ser%.txt'"
 echo Filtering by "%customer-mod-ser%" . . .
 GOTO ENDING
 :CONSOLE
@@ -63,12 +78,10 @@ CLS
 echo.
 echo  ## Console
 set searchedin=console
-REM ### Update the folder location for your server logs
-REM set workingfolder=
 echo.
 set /p console-player-log= Search for: 
 echo.
-Powershell "Get-ChildItem -Path '%consoleloc%\logs\*.log' -recurse | Select-String -Pattern '%console-player-log%' > '%reportsfolder%\%searchedin%-%console-player-log%.txt'"
+Powershell "Get-ChildItem -Path '%dayzrootloc%\Logs\*.log' -recurse | Select-String -Pattern '%console-player-log%' > '%reportsfolder%\%searchedin%-%console-player-log%.txt'"
 echo Filtering by "%console-player-log%" . . .
 GOTO ENDING
 :COT
@@ -82,7 +95,7 @@ REM set workingfolder=
 echo  # Paste SteamID for your desired player below
 echo.
 set /p cotplayersearch= SteamID: 
-Powershell "Get-ChildItem -Path '%cotloc%\profiles\CommunityOnlineTools\Logs\*.log' -recurse | Select-String -Pattern '%cotplayersearch%' > '%reportsfolder%\%searchedin%-%cotplayersearch%.txt'"
+Powershell "Get-ChildItem -Path '%dayzrootloc%\profiles\CommunityOnlineTools\Logs\*.log' -recurse | Select-String -Pattern '%cotplayersearch%' > '%reportsfolder%\%searchedin%-%cotplayersearch%.txt'"
 echo Filtering by "%cotplayersearch%" . . .
 echo.
 GOTO ENDING
@@ -93,15 +106,15 @@ echo  ## Game Chat Search
 echo.
 set searchedin=gamechat
 REM ### Update the folder location for your server logs
-REM set workingfolder=C:\Servers\Dayz-New\servers\0\profiles\CodeLock\Logs\
+REM set workingfolder=
 echo  # Search for word, phrase, or player
 echo.
 set /p ignchatsearch= Paste or type string here: 
-Powershell "Get-ChildItem -Path '%consoleloc%\logs\*.ADM' -recurse | Select-String -Pattern 'Chat' | Format-Table -Autosize LineNumber,Line -GroupBy Path -HideTableHeaders > '%reportsfolder%\%searchedin%-chatdump.txt'"
+Powershell "Get-ChildItem -Path '%dayzrootloc%\logs\*.ADM' -recurse | Select-String -Pattern 'Chat' | Format-Table Line -Autosize -HideTableHeaders > '%Temp%\QaD\%searchedin%-chatdump.txt'"
 REM Select-String -pattern "chat" | Format-Table -Autosize LineNumber,Line -GroupBy Path -HideTableHeaders
 echo Filtering by "%ignchatsearch%" . . .
-Powershell "Get-ChildItem -Path '%reportsfolder%\%searchedin%-chatdump.txt' | Select-String -Pattern '%ignchatsearch%' | Format-Table Line -Autosize -HideTableHeaders > '%reportsfolder%\%searchedin%-%ignchatsearch%.txt'"
-REM del "%reportsfolder%\Chat"
+Powershell "Get-ChildItem -Path '%Temp%\QaD\%searchedin%-chatdump.txt' | Select-String -Pattern '%ignchatsearch%' | Format-Table Line -Autosize -HideTableHeaders > '%reportsfolder%\%searchedin%-%ignchatsearch%.txt'"
+IF EXIST "%Temp%\QaD\%searchedin%-chatdump.txt" DEL "%Temp%\QaD\%searchedin%-chatdump.txt"
 echo. 
 GOTO ENDING
 :PLDMG
@@ -119,8 +132,10 @@ echo  4. ign to if that player was involved in PvP
 echo.
 set /p playerdamage= Search for: 
 echo.
-Powershell "Get-ChildItem -Path '%consoleloc%\logs\*.ADM' -recurse | Select-String -Pattern '%playerdamage%' > '%reportsfolder%\%searchedin%-%playerdamage%.txt'"
+Powershell "Get-ChildItem -Path '%dayzrootloc%\logs\*.ADM' -recurse | Select-String -Pattern 'hit by' | Format-Table Line -Autosize -HideTableHeaders > '%Temp%\QaD\%searchedin%-hitby.txt'"
 echo Filtering by "%playerdamage%" . . .
+Powershell "Get-ChildItem -Path '%Temp%\QaD\%searchedin%-hitby.txt' | Select-String -Pattern '%playerdamage%' | Format-Table Line -Autosize -HideTableHeaders > '%reportsfolder%\%searchedin%-%playerdamage%.txt'"
+REM IF EXIST "%Temp%\QaD\%searchedin%-hitby.txt" DEL "%Temp%\QaD\%searchedin%-hitby.txt"
 GOTO ENDING
 :ENDING
 GOTO TOPTOP
@@ -130,13 +145,11 @@ EXIT
 echo.
 echo #################### - VARIABLE SETTINGS - ####################
 echo.
-echo  Your folder locations are not all set correctly!
+echo  You still need to input your dayz root folder!
 echo.
-echo  %consoleloc%
+echo  %dayzrootloc%
 echo.
-echo  %cotloc%
-echo.
-echo  Please edit this file and look for the banner to update those locations
+echo  Please edit this file and look for the banner to update this locations
 echo.
 PAUSE
 EXIT
