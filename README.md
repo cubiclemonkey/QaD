@@ -14,11 +14,9 @@ The best place to keep this file is on your Desktop. Once the folder locations a
 <code>
 REM ### DayZ Server Folder
   
-set consoleloc=NOTSET
+set dayzrootloc=NOTSET
 </code>
 
-Paste the top level folder of your DayZ server after the '=' (including drive letter).
+Paste the top level folder of your DayZ server after the '='
 
-Look at the example image if you're not sure what to do:
-
-<img src="https://github.com/cubiclemonkey/QaD/blob/main/QaD-example.png?raw=true">
+Example: set dayzrootloc=C:\DayZ\server
