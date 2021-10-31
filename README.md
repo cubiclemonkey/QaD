@@ -19,4 +19,7 @@ set dayzrootloc=NOTSET
 
 Paste the top level folder of your DayZ server after the '='
 
-Example: set dayzrootloc=C:\DayZ\server
+Example:
+<code>
+  set dayzrootloc=C:\DayZ\server
+</code>
