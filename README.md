@@ -23,3 +23,5 @@ Example:
 <code>
   set dayzrootloc=C:\DayZ\server
 </code>
+
+The next version will not require editing the file.
