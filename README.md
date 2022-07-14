@@ -1,5 +1,5 @@
-# QaD
-Quick &amp; Durty - DayZ Server Logfile String Search
+# quad
+Quick &amp; Dirty - DayZ Server Log Search
 
 This is the first public version of this collection of scripts. It does require some editing! Don't just plop it in and expect it to work.
 
