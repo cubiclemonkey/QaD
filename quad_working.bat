@@ -1,9 +1,6 @@
 @echo off
 :TOPTOP
-<<<<<<< HEAD
-TITLE Quick ^& Durty Log Sifter
-=======
-TITLE Quad - Quick and Dirty Log Sifting
+TITLE quad
 echo.
 echo   _____ _____ _____ ____  
 echo  ^|     ^|  ^|  ^|  _  ^|    \ 
