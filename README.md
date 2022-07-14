@@ -1,37 +1,18 @@
 # quad
-Quick &amp; Dirty - DayZ Server Log Search
+The goal of this repo is to provide some low level access to the semantics of DayZ log files.
 
-This is the first public version of this collection of scripts. It does require some editing! Don't just plop it in and expect it to work.
+I keep seeing fancy log searches that give you good functionality but you have to know what you're looking for.
 
-I've commented in the file on what needs to be updated. Please read through the file!
+I've found better results when doing a specific text/string search of a broad range and then finding common data points between them.
 
-This does rely on Powershell in the background! You may need to change your Powershell Execution Policy. (Powershell "Set-ExecutionPolicy RemoteSigned")
+Rule No 1: Nothing to install or Mods to download to your DayZ server
 
-When you run this batch file it will look for a 'Reports' folder on your desktop and create it if it can't be found. That's where the results of your searches will be in .txt format.
+Rule No 2: Doesn't require admin privileges to use
 
-<<<<<<< HEAD
-I've had more than a few questions about why this is written in batch/powershell.
+Rule No 3: Simple, basic text output based on matching strings from log files
 
-My main goal is giving Admins something that will work out of the box.
+The biggest hurdles I see is that all DayZ servers are arranged differently by their file structure.
 
-Nothing to install, no extra packages needed -- nothing superfluous.
+I'm still sorting out how to take that into account while still making this accessible.
 
-Just a simple log search and you can poke at it if you want to. 
-=======
-The best place to keep this file is on your Desktop. Once the folder locations are set it will know where to go to find what you're looking for.
-
-<code>
-REM ### DayZ Server Folder
-  
-set dayzrootloc=NOTSET
-</code>
-
-Paste the top level folder of your DayZ server after the '='
-
-Example:
-<code>
-  set dayzrootloc=C:\DayZ\server
-</code>
-
-The next version will not require editing the file.
->>>>>>> 8f5e53d4fc10e2a136dc875c41f6027ce90c3f6e
+Your feedback is greatly appreciated.
